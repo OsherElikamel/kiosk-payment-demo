@@ -1,0 +1,109 @@
+[
+  {
+    "storeId": "STORE_001",
+    "storeName": "Paytag Store",
+    "currency": "₪",
+    "logoPath": "assets/images/paytag_logo.png",
+    "enabledPaymentMethods": ["credit_card", "cash", "buyme", "beastdaa"],
+    "paymentMethods": [
+      {
+        "id": "credit_card",
+        "displayName": "Credit Card",
+        "processingDelay": 600,
+        "successMessage": "Card authorized",
+        "failureMessage": "Payment cancelled",
+        "successProbability": 0.5
+      },
+      {
+        "id": "cash",
+        "displayName": "Cash",
+        "processingDelay": 400,
+        "successMessage": "Cash accepted",
+        "failureMessage": "Send back amount",
+        "successProbability": 0.5
+      },
+      {
+        "id": "buyme",
+        "displayName": "BuyMe",
+        "processingDelay": 600,
+        "successMessage": "BuyMe success",
+        "failureMessage": "Payment cancelled",
+        "successProbability": 0.5
+      },
+      {
+        "id": "beastdaa",
+        "displayName": "Beastdaa",
+        "processingDelay": 600,
+        "successMessage": "Beastdaa success",
+        "failureMessage": "Payment cancelled",
+        "successProbability": 0.5
+      }
+    ]
+  },
+  {
+    "storeId": "STORE_002",
+    "storeName": "Samsung Store",
+    "currency": "$",
+    "logoPath": "assets/images/samsung_logo.png",
+    "enabledPaymentMethods": ["credit_card", "paypal", "cash"],
+    "paymentMethods": [
+      {
+        "id": "credit_card",
+        "displayName": "Credit Card",
+        "processingDelay": 700,
+        "successMessage": "Card approved",
+        "failureMessage": "Card declined",
+        "successProbability": 0.6
+      },
+      {
+        "id": "paypal",
+        "displayName": "PayPal",
+        "processingDelay": 1000,
+        "successMessage": "PayPal approved",
+        "failureMessage": "PayPal declined",
+        "successProbability": 0.7
+      },
+      {
+        "id": "cash",
+        "displayName": "Cash",
+        "processingDelay": 500,
+        "successMessage": "Cash handled",
+        "failureMessage": "Return cash",
+        "successProbability": 0.5
+      }
+    ]
+  },
+  {
+    "storeId": "STORE_003",
+    "storeName": "Apple Store",
+    "currency": "€",
+    "logoPath": "assets/images/apple_logo.png",
+    "enabledPaymentMethods": ["cash", "credit_card", "apple_pay"],
+    "paymentMethods": [
+      {
+        "id": "cash",
+        "displayName": "Cash",
+        "processingDelay": 300,
+        "successMessage": "Cash payment received",
+        "failureMessage": "Payment cancelled",
+        "successProbability": 0.8
+      },
+      {
+        "id": "credit_card",
+        "displayName": "Credit Card",
+        "processingDelay": 700,
+        "successMessage": "Card authorized",
+        "failureMessage": "Card declined",
+        "successProbability": 0.6
+      },
+      {
+        "id": "apple_pay",
+        "displayName": "Apple Pay",
+        "processingDelay": 800,
+        "successMessage": "Apple Pay successful",
+        "failureMessage": "Apple Pay failed",
+        "successProbability": 0.65
+      }
+    ]
+  }
+]
