@@ -4,6 +4,7 @@
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
+.metadata
 
 # IDE
 .idea/
@@ -25,3 +26,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Assignment artifacts
+*.docx
+*.mp4

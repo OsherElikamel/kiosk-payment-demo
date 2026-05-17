@@ -16,7 +16,7 @@ Built as a technical assignment for PayTag.
 
 ```bash
 # Clone and install
-git clone <repo-url>
+git clone https://github.com/OsherElikamel/kiosk-payment-demo.git
 cd kiosk-payment-demo
 flutter pub get
 
