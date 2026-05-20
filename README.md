@@ -4,6 +4,22 @@ A desktop self-checkout kiosk simulator built with Flutter. Simulates the full r
 
 Built as a technical assignment for PayTag.
 
+![Welcome screen](docs/welcome_screen.png)
+
+<details>
+<summary>More screenshots</summary>
+
+### Scanned Items
+![Scanned items](docs/items_scanned.png)
+
+### Payment Method Selection
+![Payment method](docs/payment_screen_plus_chosen.png)
+
+### Payment Successful
+![Payment successful](docs/payment_sucessful.png)
+
+</details>
+
 ## Tech Stack
 
 - **Flutter 3.6+** — desktop app (Windows, macOS, Linux)
