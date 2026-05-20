@@ -15,6 +15,9 @@ Built as a technical assignment for PayTag.
 ### Payment Method Selection
 ![Payment method](docs/payment_screen_plus_chosen.png)
 
+### Processing Payment
+![Processing payment](docs/processing_payment.png)
+
 ### Payment Successful
 ![Payment successful](docs/payment_sucessful.png)
 
