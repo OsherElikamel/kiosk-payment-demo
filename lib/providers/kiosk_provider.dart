@@ -13,23 +13,21 @@ class KioskProvider extends ChangeNotifier {
   PaymentMethod? selectedPayment;
   bool scanning = false;
 
-  // Contains methods provided by StoreConfig
   late final Map<String, PaymentMethod> _methods;
+  late final List<String> _enabledIds;
 
   KioskProvider(this.storeConfig) {
     _methods = {
       for (final m in storeConfig.paymentMethods) m.id: m,
     };
-
-    // If no "enabled" list provided, enable all automatically
-    if (storeConfig.enabledPaymentMethods.isEmpty) {
-      storeConfig.enabledPaymentMethods.addAll(_methods.keys);
-    }
+    _enabledIds = storeConfig.enabledPaymentMethods.isEmpty
+        ? _methods.keys.toList()
+        : List.of(storeConfig.enabledPaymentMethods);
   }
 
   List<PaymentMethod> get availableMethods =>
       _methods.values
-          .where((m) => storeConfig.enabledPaymentMethods.contains(m.id))
+          .where((m) => _enabledIds.contains(m.id))
           .toList();
 
   String formatPrice(double price) =>

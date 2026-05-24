@@ -80,7 +80,7 @@ class PaymentMethodScreen extends StatelessWidget {
                                       style: textTheme.titleLarge,
                                     ),
                                     trailing: selected
-                                        ? const Icon(Icons.check_circle, size: 32, color: Colors.blue)
+                                        ? const Icon(Icons.check_circle, size: 32, color: AppColors.selected)
                                         : null,
                                     onTap: () => p.setPaymentMethod(m.id),
                                   ),

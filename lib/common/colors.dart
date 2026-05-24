@@ -23,6 +23,9 @@ class AppColors {
   static const Color shadowHeavy = Color(0x73000000);
   static const Color shadowTop = Color(0x1A000000);
 
+  static const Color success = Color(0xFF4CAF50);
+  static const Color selected = Color(0xFF1976D2);
+
   static const Color link = primary;
 
   static const LinearGradient primaryGradient = LinearGradient(
@@ -40,6 +43,7 @@ class AppColors {
       300: Color(0xFFFF5C97),
       400: Color(0xFFFF337D),
       500: Color(0xFFE02074),
+      600: Color(0xFFCC1B68),
       700: Color(0xFFB81A5C),
       800: Color(0xFFA41553),
       900: Color(0xFF8F1147),

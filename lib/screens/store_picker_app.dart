@@ -98,7 +98,7 @@ class _StorePickerAppState extends State<StorePickerApp> {
       ),
       
         floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.blue,
+          backgroundColor: AppColors.selected,
           icon: const Icon(Icons.folder_open),
           label: Text(AppStrings.logs),
           onPressed: _openLogsFolder,
@@ -163,7 +163,7 @@ class _StorePickerAppState extends State<StorePickerApp> {
                     ),
                     trailing: selected
                         ? const Icon(Icons.check_circle,
-                            size: 32, color: Colors.blue)
+                            size: 32, color: AppColors.selected)
                         : null,
                     onTap: () {
                       setState(() => selectedStore = store);

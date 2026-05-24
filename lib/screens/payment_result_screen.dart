@@ -33,7 +33,7 @@ class PaymentResultScreen extends StatelessWidget {
                   Icon(
                     success ? Icons.check_circle_outline : Icons.error_outline,
                     size: 80,
-                    color: success ? Colors.green : AppColors.primaryAccent,
+                    color: success ? AppColors.success : AppColors.primaryAccent,
                   ),
                   const SizedBox(height: 24),
                   Text(
