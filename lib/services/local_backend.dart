@@ -6,6 +6,7 @@ import 'package:excel/excel.dart';
 import '../common/app_assets.dart';
 import '../common/app_strings.dart';
 import '../models/tag_item.dart';
+import 'logger.dart';
 
 class LocalBackend {
   final Random _random = Random();
@@ -143,7 +144,8 @@ class LocalBackend {
       }
 
       return items;
-    } catch (_) {
+    } catch (e, stack) {
+      Logger.e('scanOnce failed for $chosenFile: $e', stack);
       return [];
     }
   }

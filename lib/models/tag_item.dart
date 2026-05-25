@@ -4,7 +4,7 @@ class TagItem {
   final double price;
   final String name;
 
-  TagItem({
+  const TagItem({
     required this.tagId,
     required this.assetPath,
     required this.price,

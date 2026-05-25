@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../common/app_strings.dart';
 import '../core/store_config.dart';
 import '../models/tag_item.dart';
 import '../services/local_backend.dart';
+import '../services/logger.dart';
 import '../services/payments/payment_method.dart';
 
 class KioskProvider extends ChangeNotifier {
@@ -41,9 +41,14 @@ class KioskProvider extends ChangeNotifier {
     scanned = [];
     notifyListeners();
 
-    scanned = await backend.scanOnce();
-    scanning = false;
-    notifyListeners();
+    try {
+      scanned = await backend.scanOnce();
+    } catch (e, stack) {
+      Logger.e('Scan failed: $e', stack);
+    } finally {
+      scanning = false;
+      notifyListeners();
+    }
   }
 
   void setPaymentMethod(String id) {
@@ -53,11 +58,17 @@ class KioskProvider extends ChangeNotifier {
 
   Future<PaymentResult> processPayment() async {
     if (selectedPayment == null) {
-      return PaymentResult(
-          success: false, message: AppStrings.noPaymentMethodSelected);
+      return const PaymentResult(
+          success: false, message: 'No payment method selected');
     }
 
-    return await selectedPayment!.pay(total, storeConfig.currency, storeConfig.storeId, storeConfig.storeName);
+    try {
+      return await selectedPayment!.pay(total, storeConfig.currency, storeConfig.storeId, storeConfig.storeName);
+    } catch (e, stack) {
+      Logger.e('Payment failed: $e', stack);
+      return const PaymentResult(
+          success: false, message: 'Payment processing error');
+    }
   }
 
   void reset() {

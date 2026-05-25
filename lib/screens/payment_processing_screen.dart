@@ -4,6 +4,7 @@ import '../common/app_dimensions.dart';
 import '../common/app_strings.dart';
 import '../common/colors.dart';
 import '../providers/kiosk_provider.dart';
+import '../services/payments/payment_method.dart';
 import '../widgets/big_button.dart';
 import 'payment_result_screen.dart';
 
@@ -30,14 +31,22 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
       _message = AppStrings.processingPaymentTemplate(paymentMethodName);
     });
 
-    final result = await p.processPayment();
+    late final PaymentResult result;
+    try {
+      result = await p.processPayment();
 
-    if (!result.success && p.selectedPayment != null) {
-      await p.selectedPayment!.cancel(
-        p.storeConfig.storeId,
-        p.storeConfig.storeName,
-        p.storeConfig.currency,
-      );
+      if (!result.success && p.selectedPayment != null) {
+        try {
+          await p.selectedPayment!.cancel(
+            p.storeConfig.storeId,
+            p.storeConfig.storeName,
+            p.storeConfig.currency,
+          );
+        } catch (_) {}
+      }
+    } catch (_) {
+      result = const PaymentResult(
+          success: false, message: 'Payment processing error');
     }
 
     if (!mounted) return;

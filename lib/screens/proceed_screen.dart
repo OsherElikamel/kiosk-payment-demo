@@ -54,7 +54,7 @@ class ProceedScreen extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                   child: Text(
                     AppStrings.cancel,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.primaryAccent,
                       fontSize: 19,
                       decoration: TextDecoration.underline,

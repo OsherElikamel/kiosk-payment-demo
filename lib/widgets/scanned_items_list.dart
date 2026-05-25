@@ -17,7 +17,7 @@ class ScannedItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final itemTotalWidth = AppSpacing.itemsWidth + 32;
+    const itemTotalWidth = AppSpacing.itemsWidth + 32;
     final itemsPerRow = (screenWidth / itemTotalWidth).floor().clamp(1, scannedItems.length);
     final fitsInOneRow = scannedItems.length <= itemsPerRow;
 

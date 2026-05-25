@@ -45,7 +45,7 @@ class _ScanningScreenState extends State<ScanningScreen> {
     return Consumer<KioskProvider>(
       builder: (context, p, _) {
         if (!p.scanning && p.scanned.isNotEmpty && !_hasNavigated) {
-          Future.microtask(_navigateAfterDelay);
+          WidgetsBinding.instance.addPostFrameCallback((_) => _navigateAfterDelay());
         }
 
         Widget centerContent;

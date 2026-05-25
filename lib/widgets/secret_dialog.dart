@@ -39,11 +39,11 @@ class SecretStorePickerDialog extends StatelessWidget {
             // Cool icon with subtle glow effect
             Container(
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.background,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.admin_panel_settings_rounded,
                 size: 80,
                 color: AppColors.textPrimary,
@@ -69,7 +69,7 @@ class SecretStorePickerDialog extends StatelessWidget {
             // Subtitle — slightly larger and elegant
             Text(
               AppStrings.selectStoreUnlock,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 26,
                 color: AppColors.textTitle,
                 height: 1.4,

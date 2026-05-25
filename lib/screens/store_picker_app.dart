@@ -39,15 +39,11 @@ class LangText extends StatelessWidget {
 class _StorePickerAppState extends State<StorePickerApp> {
   StoreConfig? selectedStore;
 
-  // Switch language (default English)
-  AppLanguage currentLanguage = AppLanguage.english;
-
-
   Future<void> _openLogsFolder() async {
     final path = await Logger.getLogsDirectoryPath();
 
     if (Platform.isWindows) {
-      String normalizedPath = path.replaceAll('/', '\\');
+      final normalizedPath = path.replaceAll('/', '\\');
       await Process.run('explorer', [normalizedPath]);
     } else if (Platform.isMacOS) {
       await Process.run('open', [path]);
@@ -59,45 +55,42 @@ class _StorePickerAppState extends State<StorePickerApp> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-       appBar: AppBar(
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
         title: LangText(() => AppStrings.selectStore),
         backgroundColor: AppColors.background,
         foregroundColor: AppColors.textTitle,
         elevation: 0,
         leading: IconButton(
-    icon: const Icon(Icons.arrow_back, color: AppColors.textTitle),
-    onPressed: () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => WelcomeScreen()),
-      );
-    },
-  ),
-        actions: [
-      IconButton(
-        onPressed: () {
-          AppStrings.language = AppStrings.language == AppLanguage.english
-              ? AppLanguage.hebrew
-              : AppLanguage.english;
-        },
-        icon: ValueListenableBuilder<AppLanguage>(
-          valueListenable: AppStrings.currentLanguage,
-          builder: (_, lang, __) {
-            return lang == AppLanguage.english
-                ? Image.asset(AppAssets.flagGb, width: 32)
-                : Image.asset(AppAssets.flagIl, width: 32);
+          icon: const Icon(Icons.arrow_back, color: AppColors.textTitle),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const WelcomeScreen()),
+            );
           },
         ),
-        tooltip: 'Switch language',
-      ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              AppStrings.language = AppStrings.language == AppLanguage.english
+                  ? AppLanguage.hebrew
+                  : AppLanguage.english;
+            },
+            icon: ValueListenableBuilder<AppLanguage>(
+              valueListenable: AppStrings.currentLanguage,
+              builder: (_, lang, __) {
+                return lang == AppLanguage.english
+                    ? Image.asset(AppAssets.flagGb, width: 32)
+                    : Image.asset(AppAssets.flagIl, width: 32);
+              },
+            ),
+            tooltip: 'Switch language',
+          ),
         ],
       ),
-      
-        floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton.extended(
           backgroundColor: AppColors.selected,
           icon: const Icon(Icons.folder_open),
           label: Text(AppStrings.logs),
@@ -211,7 +204,6 @@ class _StorePickerAppState extends State<StorePickerApp> {
             );
           },
         ),
-      ),
-    );
+      );
   }
 }
