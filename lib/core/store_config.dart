@@ -82,10 +82,10 @@ class StoreConfig {
 
   static StoreConfig fromJson(Map<String, dynamic> json) {
     return StoreConfig(
-      storeId: json['storeId'],
-      storeName: json['storeName'],
-      currency: json['currency'],
-      logoPath: json['logoPath'] ?? AppAssets.logoPath,
+      storeId: json['storeId'] as String? ?? '',
+      storeName: json['storeName'] as String? ?? '',
+      currency: json['currency'] as String? ?? '',
+      logoPath: json['logoPath'] as String? ?? AppAssets.logoPath,
       enabledPaymentMethods: List<String>.from(json['enabledPaymentMethods'] ?? []),
       paymentMethods: (json['paymentMethods'] as List? ?? [])
           .map((pmJson) => PaymentMethod.fromJson(pmJson))

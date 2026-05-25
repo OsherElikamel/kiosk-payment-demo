@@ -47,7 +47,8 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
           await Logger.e('Payment cancel failed: $e', stack);
         }
       }
-    } catch (_) {
+    } catch (e, stack) {
+      await Logger.e('Payment processing failed: $e', stack);
       result = const PaymentResult(
           success: false, message: 'Payment processing error');
     }

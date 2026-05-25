@@ -25,7 +25,8 @@ Future<void> main(List<String> args) async {
         orElse: () => stores.first,
       );
     }
-  } catch (_) {
+  } catch (e) {
+    debugPrint('Failed to load stores config, using defaults: $e');
     config = await StoreConfig.load();
   }
 

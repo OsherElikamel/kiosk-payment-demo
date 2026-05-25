@@ -32,9 +32,9 @@ class LocalBackend {
           existing.add(path);
         }
       } on FlutterError catch (_) {
-        // Asset not found
-      } catch (_) {
-        // Parsing error
+        // Asset not bundled — skip
+      } catch (e, stack) {
+        await Logger.e('Failed to parse tag input $path: $e', stack);
       }
     }
 
@@ -90,7 +90,7 @@ class LocalBackend {
       _tagDatabaseCache = map;
       return map;
     } catch (e) {
-      debugPrint('Failed to load tag database: $e');
+      await Logger.e('Failed to load tag database: $e', null);
       return {};
     }
   }
