@@ -91,6 +91,9 @@ class ScannedItemsList extends StatelessWidget {
                 item.assetPath,
                 fit: BoxFit.cover,
                 width: double.infinity,
+                errorBuilder: (_, __, ___) => const Center(
+                  child: Icon(Icons.image_not_supported_outlined, size: 40),
+                ),
               ),
             ),
           ),

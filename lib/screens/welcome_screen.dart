@@ -62,6 +62,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       p.storeConfig.logoPath,
                       height: 120,
                       fit: BoxFit.contain,
+                      errorBuilder: (_, __, ___) =>
+                          const Icon(Icons.store, size: 80),
                     ),
                   ),
                   const SizedBox(height: 60),

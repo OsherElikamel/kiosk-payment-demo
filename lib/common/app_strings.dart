@@ -96,6 +96,7 @@ class AppStrings {
   static String get selectStore => language == AppLanguage.hebrew ? 'בחר חנות' : 'Select Store';
   static String get selectStoreUnlock => language == AppLanguage.hebrew ? 'בחירת החנות פתוחה!' : 'Store selection unlocked!';
 
+  static String get switchLanguage => language == AppLanguage.hebrew ? 'החלף שפה' : 'Switch language';
   static String get devMode => language == AppLanguage.hebrew ? 'מצב מפתח' : 'Developer Mode';
   static String get logs => language == AppLanguage.hebrew ? 'לוגים' : 'Logs';
 }

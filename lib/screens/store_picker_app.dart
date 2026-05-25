@@ -86,7 +86,7 @@ class _StorePickerAppState extends State<StorePickerApp> {
                     : Image.asset(AppAssets.flagIl, width: 32);
               },
             ),
-            tooltip: 'Switch language',
+            tooltip: AppStrings.switchLanguage,
           ),
         ],
       ),

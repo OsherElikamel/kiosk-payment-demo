@@ -4,6 +4,7 @@ import '../common/app_dimensions.dart';
 import '../common/app_strings.dart';
 import '../common/colors.dart';
 import '../providers/kiosk_provider.dart';
+import '../services/logger.dart';
 import '../services/payments/payment_method.dart';
 import '../widgets/big_button.dart';
 import 'payment_result_screen.dart';
@@ -42,7 +43,9 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
             p.storeConfig.storeName,
             p.storeConfig.currency,
           );
-        } catch (_) {}
+        } catch (e, stack) {
+          await Logger.e('Payment cancel failed: $e', stack);
+        }
       }
     } catch (_) {
       result = const PaymentResult(
