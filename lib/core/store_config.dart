@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import '../common/app_assets.dart';
-import '../common/app_strings.dart';
 import '../services/logger.dart';
 import '../services/payments/payment_method.dart';
 
@@ -46,10 +45,13 @@ class StoreConfig {
     return stores;
   }
 
+  /// Built-in fallback used only when stores.json is unreadable. Both
+  /// language variants are literals — resolving AppStrings here would
+  /// freeze whichever language was active at construction time.
   static Future<StoreConfig> load() async {
     await Future.delayed(const Duration(milliseconds: 50));
 
-    return StoreConfig(
+    return const StoreConfig(
       storeId: 'STORE_001',
       storeName: 'Paytag Store',
       currency: '₪',
@@ -57,34 +59,46 @@ class StoreConfig {
       paymentMethods: [
         PaymentMethod(
           id: 'credit_card',
-          displayName: AppStrings.paymentMethodCreditCard,
-          processingDelay: const Duration(milliseconds: 600),
-          successMessage: AppStrings.cardAuthorized,
-          failureMessage: AppStrings.paymentCancelled,
+          displayName: 'Credit Card',
+          displayNameHe: 'כרטיס אשראי',
+          processingDelay: Duration(milliseconds: 600),
+          successMessage: 'Card authorized',
+          successMessageHe: 'הכרטיס אושר',
+          failureMessage: 'Payment cancelled',
+          failureMessageHe: 'התשלום בוטל',
           successProbability: 0.50,
         ),
         PaymentMethod(
           id: 'cash',
-          displayName: AppStrings.paymentMethodCash,
-          processingDelay: const Duration(milliseconds: 400),
-          successMessage: AppStrings.cashAccepted,
-          failureMessage: AppStrings.sendBackAmount,
+          displayName: 'Cash',
+          displayNameHe: 'מזומן',
+          processingDelay: Duration(milliseconds: 400),
+          successMessage: 'Cash accepted',
+          successMessageHe: 'המזומן התקבל',
+          failureMessage: 'Send back amount',
+          failureMessageHe: 'החזר את הסכום שהוכנס',
           successProbability: 0.50,
         ),
         PaymentMethod(
           id: 'buyme',
-          displayName: AppStrings.paymentMethodBuyMe,
-          processingDelay: const Duration(milliseconds: 600),
-          successMessage: AppStrings.buyMeSuccess,
-          failureMessage: AppStrings.paymentCancelled,
+          displayName: 'BuyMe',
+          displayNameHe: 'ביי מי',
+          processingDelay: Duration(milliseconds: 600),
+          successMessage: 'BuyMe success',
+          successMessageHe: 'ביי מי אושר',
+          failureMessage: 'Payment cancelled',
+          failureMessageHe: 'התשלום בוטל',
           successProbability: 0.50,
         ),
         PaymentMethod(
           id: 'beastdaa',
-          displayName: AppStrings.paymentMethodBeastdaa,
-          processingDelay: const Duration(milliseconds: 600),
-          successMessage: AppStrings.beastdaaSuccess,
-          failureMessage: AppStrings.paymentCancelled,
+          displayName: 'Beastdaa',
+          displayNameHe: 'ביסטדא',
+          processingDelay: Duration(milliseconds: 600),
+          successMessage: 'Beastdaa success',
+          successMessageHe: 'ביסטדא אושר',
+          failureMessage: 'Payment cancelled',
+          failureMessageHe: 'התשלום בוטל',
           successProbability: 0.50,
         ),
       ],

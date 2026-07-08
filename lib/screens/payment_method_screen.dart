@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../common/app_dimensions.dart';
 import '../common/app_strings.dart';
 import '../common/colors.dart';
+import '../common/payment_method_icons.dart';
 import '../providers/kiosk_provider.dart';
 import '../widgets/big_button.dart';
 import 'payment_processing_screen.dart';
@@ -21,7 +22,7 @@ class PaymentMethodScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: AlignmentDirectional.centerStart,
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
                   child: Text(
@@ -50,7 +51,7 @@ class PaymentMethodScreen extends StatelessWidget {
                           builder: (_, p, __) {
                             return Text(
                               AppStrings.choosePaymentMethod(
-                                  p.selectedPayment?.displayName),
+                                  p.selectedPayment?.localizedDisplayName),
                               style: textTheme.headlineLarge
                                   ?.copyWith(height: 1.2),
                               textAlign: TextAlign.center,
@@ -79,8 +80,13 @@ class PaymentMethodScreen extends StatelessWidget {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16),
                                     ),
+                                    leading: Icon(
+                                      paymentMethodIcon(m.id),
+                                      size: 32,
+                                      color: AppColors.textTitle,
+                                    ),
                                     title: Text(
-                                      m.displayName,
+                                      m.localizedDisplayName,
                                       style: textTheme.titleLarge,
                                     ),
                                     trailing: selected

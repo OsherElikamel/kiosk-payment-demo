@@ -108,31 +108,11 @@ class AppStrings {
   static String get totalPaid =>
       language == AppLanguage.hebrew ? 'סה"כ שולם' : 'Total paid';
 
-  // Payment methods
-  static String get paymentMethodCreditCard =>
-      language == AppLanguage.hebrew ? 'כרטיס אשראי' : 'Credit Card';
-  static String get paymentMethodCash =>
-      language == AppLanguage.hebrew ? 'מזומן' : 'Cash';
-  static String get paymentMethodBuyMe =>
-      language == AppLanguage.hebrew ? 'ביי מי' : 'BuyMe';
-  static String get paymentMethodBeastdaa =>
-      language == AppLanguage.hebrew ? 'ביסטדא' : 'Beastdaa';
-
   // Payment outcomes
-  static String get cardAuthorized =>
-      language == AppLanguage.hebrew ? 'כרטיס אושר' : 'Card authorized';
+  // (method names and store-specific outcome messages live in stores.json
+  // with He variants; only the app-generated cancel message remains here)
   static String get paymentCancelled =>
       language == AppLanguage.hebrew ? 'התשלום בוטל' : 'Payment Cancelled';
-  static String get cashAccepted => language == AppLanguage.hebrew
-      ? 'מזומן התקבל ונרשם'
-      : 'Cash accepted and recorded';
-  static String get sendBackAmount => language == AppLanguage.hebrew
-      ? 'החזר את הסכום שהוכנס'
-      : 'Send back the same amount entered';
-  static String get buyMeSuccess =>
-      language == AppLanguage.hebrew ? 'ביי מי הצליח' : 'BuyMe success';
-  static String get beastdaaSuccess =>
-      language == AppLanguage.hebrew ? 'ביסטדא הצליח' : 'Beastdaa success';
 
   // Store selection
   static String get selectStore =>

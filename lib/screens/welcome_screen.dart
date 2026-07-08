@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../common/app_assets.dart';
 import '../common/app_dimensions.dart';
 import '../common/app_strings.dart';
 import '../providers/kiosk_provider.dart';
@@ -48,55 +49,82 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Container(
-            constraints: AppSpacing.boxConstraintsPage,
-            padding: AppSpacing.screenHorizontal,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  GestureDetector(
-                    key: const Key('storeLogo'),
-                    onTap: _onLogoTapped,
-                    child: Image.asset(
-                      p.storeConfig.logoPath,
-                      height: 120,
-                      fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) =>
-                          const Icon(Icons.store, size: 80),
-                    ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: IconButton(
+                  onPressed: () {
+                    AppStrings.language =
+                        AppStrings.language == AppLanguage.english
+                            ? AppLanguage.hebrew
+                            : AppLanguage.english;
+                  },
+                  tooltip: AppStrings.switchLanguage,
+                  icon: Image.asset(
+                    AppStrings.language == AppLanguage.english
+                        ? AppAssets.flagGb
+                        : AppAssets.flagIl,
+                    width: 32,
+                    errorBuilder: (_, __, ___) =>
+                        const Icon(Icons.language, size: 28),
                   ),
-                  const SizedBox(height: 60),
-                  Text(
-                    AppStrings.welcome,
-                    style: textTheme.headlineLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    AppStrings.insertItemsPrompt,
-                    style: textTheme.headlineLarge?.copyWith(height: 1.4),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 100),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 60),
-                    child: BigButton(
-                      label: AppStrings.startLabel,
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const ScanningScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
+            Center(
+              child: Container(
+                constraints: AppSpacing.boxConstraintsPage,
+                padding: AppSpacing.screenHorizontal,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GestureDetector(
+                        key: const Key('storeLogo'),
+                        onTap: _onLogoTapped,
+                        child: Image.asset(
+                          p.storeConfig.logoPath,
+                          height: 120,
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, __, ___) =>
+                              const Icon(Icons.store, size: 80),
+                        ),
+                      ),
+                      const SizedBox(height: 60),
+                      Text(
+                        AppStrings.welcome,
+                        style: textTheme.headlineLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        AppStrings.insertItemsPrompt,
+                        style: textTheme.headlineMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 100),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 60),
+                        child: BigButton(
+                          label: AppStrings.startLabel,
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const ScanningScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

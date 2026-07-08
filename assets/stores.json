@@ -9,33 +9,45 @@
       {
         "id": "credit_card",
         "displayName": "Credit Card",
+        "displayNameHe": "כרטיס אשראי",
         "processingDelay": 600,
         "successMessage": "Card authorized",
+        "successMessageHe": "הכרטיס אושר",
         "failureMessage": "Payment cancelled",
+        "failureMessageHe": "התשלום בוטל",
         "successProbability": 0.5
       },
       {
         "id": "cash",
         "displayName": "Cash",
+        "displayNameHe": "מזומן",
         "processingDelay": 400,
         "successMessage": "Cash accepted",
+        "successMessageHe": "המזומן התקבל",
         "failureMessage": "Send back amount",
+        "failureMessageHe": "החזר את הסכום שהוכנס",
         "successProbability": 0.5
       },
       {
         "id": "buyme",
         "displayName": "BuyMe",
+        "displayNameHe": "ביי מי",
         "processingDelay": 600,
         "successMessage": "BuyMe success",
+        "successMessageHe": "ביי מי אושר",
         "failureMessage": "Payment cancelled",
+        "failureMessageHe": "התשלום בוטל",
         "successProbability": 0.5
       },
       {
         "id": "beastdaa",
         "displayName": "Beastdaa",
+        "displayNameHe": "ביסטדא",
         "processingDelay": 600,
         "successMessage": "Beastdaa success",
+        "successMessageHe": "ביסטדא אושר",
         "failureMessage": "Payment cancelled",
+        "failureMessageHe": "התשלום בוטל",
         "successProbability": 0.5
       }
     ]
@@ -50,25 +62,34 @@
       {
         "id": "credit_card",
         "displayName": "Credit Card",
+        "displayNameHe": "כרטיס אשראי",
         "processingDelay": 700,
         "successMessage": "Card approved",
+        "successMessageHe": "הכרטיס אושר",
         "failureMessage": "Card declined",
+        "failureMessageHe": "הכרטיס נדחה",
         "successProbability": 0.6
       },
       {
         "id": "paypal",
         "displayName": "PayPal",
+        "displayNameHe": "פייפאל",
         "processingDelay": 1000,
         "successMessage": "PayPal approved",
+        "successMessageHe": "פייפאל אושר",
         "failureMessage": "PayPal declined",
+        "failureMessageHe": "פייפאל נדחה",
         "successProbability": 0.7
       },
       {
         "id": "cash",
         "displayName": "Cash",
+        "displayNameHe": "מזומן",
         "processingDelay": 500,
         "successMessage": "Cash handled",
+        "successMessageHe": "המזומן התקבל",
         "failureMessage": "Return cash",
+        "failureMessageHe": "החזר את המזומן",
         "successProbability": 0.5
       }
     ]
@@ -83,25 +104,34 @@
       {
         "id": "cash",
         "displayName": "Cash",
+        "displayNameHe": "מזומן",
         "processingDelay": 300,
         "successMessage": "Cash payment received",
+        "successMessageHe": "התשלום במזומן התקבל",
         "failureMessage": "Payment cancelled",
+        "failureMessageHe": "התשלום בוטל",
         "successProbability": 0.8
       },
       {
         "id": "credit_card",
         "displayName": "Credit Card",
+        "displayNameHe": "כרטיס אשראי",
         "processingDelay": 700,
         "successMessage": "Card authorized",
+        "successMessageHe": "הכרטיס אושר",
         "failureMessage": "Card declined",
+        "failureMessageHe": "הכרטיס נדחה",
         "successProbability": 0.6
       },
       {
         "id": "apple_pay",
         "displayName": "Apple Pay",
+        "displayNameHe": "אפל פיי",
         "processingDelay": 800,
         "successMessage": "Apple Pay successful",
+        "successMessageHe": "אפל פיי אושר",
         "failureMessage": "Apple Pay failed",
+        "failureMessageHe": "אפל פיי נכשל",
         "successProbability": 0.65
       }
     ]

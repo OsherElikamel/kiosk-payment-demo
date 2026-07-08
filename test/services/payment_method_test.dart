@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kiosk_payment_demo/common/app_strings.dart';
 import 'package:kiosk_payment_demo/services/payments/payment_method.dart';
 
 PaymentMethod buildMethod({
@@ -46,6 +47,39 @@ void main() {
     test('accepts an integer successProbability', () {
       final method = PaymentMethod.fromJson(const {'successProbability': 1});
       expect(method.successProbability, 1.0);
+    });
+  });
+
+  group('localized getters', () {
+    tearDown(() => AppStrings.language = AppLanguage.english);
+
+    const bilingual = PaymentMethod(
+      id: 'credit_card',
+      displayName: 'Credit Card',
+      displayNameHe: 'כרטיס אשראי',
+      processingDelay: Duration(milliseconds: 10),
+      successMessage: 'Card authorized',
+      successMessageHe: 'הכרטיס אושר',
+      failureMessage: 'Card declined',
+      failureMessageHe: 'הכרטיס נדחה',
+      successProbability: 1.0,
+    );
+
+    test('resolve per the active language at display time', () {
+      expect(bilingual.localizedDisplayName, 'Credit Card');
+
+      AppStrings.language = AppLanguage.hebrew;
+      expect(bilingual.localizedDisplayName, 'כרטיס אשראי');
+      expect(bilingual.localizedSuccessMessage, 'הכרטיס אושר');
+      expect(bilingual.localizedFailureMessage, 'הכרטיס נדחה');
+    });
+
+    test('fall back to English when no Hebrew variant is configured', () {
+      AppStrings.language = AppLanguage.hebrew;
+      final englishOnly = buildMethod();
+
+      expect(englishOnly.localizedDisplayName, 'Test Method');
+      expect(englishOnly.localizedSuccessMessage, 'approved');
     });
   });
 

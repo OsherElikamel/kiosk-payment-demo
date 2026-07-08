@@ -187,7 +187,7 @@ class _StorePickerAppState extends State<StorePickerApp> {
                           ),
                         ),
                         child: Text(
-                          pm.displayName,
+                          pm.localizedDisplayName,
                           style: const TextStyle(
                             fontSize: 16,
                             color: AppColors.textTitle,

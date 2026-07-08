@@ -18,7 +18,7 @@ class PaymentResultScreen extends StatelessWidget {
     final p = Provider.of<KioskProvider>(context, listen: false);
     final success = result.success;
     final textTheme = Theme.of(context).textTheme;
-    final methodName = p.selectedPayment?.displayName;
+    final methodName = p.selectedPayment?.localizedDisplayName;
 
     return Scaffold(
       body: SafeArea(

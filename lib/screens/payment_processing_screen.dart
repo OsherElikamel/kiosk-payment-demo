@@ -25,8 +25,8 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
   void initState() {
     super.initState();
     final p = context.read<KioskProvider>();
-    _message =
-        AppStrings.processingPaymentTemplate(p.selectedPayment?.displayName);
+    _message = AppStrings.processingPaymentTemplate(
+        p.selectedPayment?.localizedDisplayName);
     _processPayment();
   }
 
