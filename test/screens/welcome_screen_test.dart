@@ -9,12 +9,12 @@ import 'package:kiosk_payment_demo/widgets/big_button.dart';
 
 void main() {
   Widget buildApp() {
-    final config = StoreConfig(
+    const config = StoreConfig(
       storeId: 'TEST',
       storeName: 'Test Store',
       currency: '₪',
       logoPath: 'assets/images/paytag_logo.png',
-      paymentMethods: const [],
+      paymentMethods: [],
     );
     return ChangeNotifierProvider(
       create: (_) => KioskProvider(config),
