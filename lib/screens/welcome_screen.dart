@@ -57,6 +57,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
+                    key: const Key('storeLogo'),
                     onTap: _onLogoTapped,
                     child: Image.asset(
                       p.storeConfig.logoPath,

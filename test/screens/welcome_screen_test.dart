@@ -35,7 +35,7 @@ void main() {
       (tester) async {
     await tester.pumpWidget(buildApp());
 
-    final logo = find.byType(GestureDetector).first;
+    final logo = find.byKey(const Key('storeLogo'));
     for (var i = 0; i < 6; i++) {
       await tester.tap(logo);
       await tester.pump();
