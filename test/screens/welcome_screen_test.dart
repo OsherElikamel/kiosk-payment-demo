@@ -35,15 +35,20 @@ void main() {
       (tester) async {
     await tester.pumpWidget(buildApp());
 
-    final logo = find.byKey(const Key('storeLogo'));
+    // The logo image never decodes inside a widget test, so its hit box
+    // can be zero-sized depending on the Flutter build — invoke the tap
+    // handler directly; the counter logic is what's under test.
+    final detector =
+        tester.widget<GestureDetector>(find.byKey(const Key('storeLogo')));
+
     for (var i = 0; i < 6; i++) {
-      await tester.tap(logo);
+      detector.onTap!();
       await tester.pump();
     }
 
     expect(find.text(AppStrings.devMode), findsNothing);
 
-    await tester.tap(logo);
+    detector.onTap!();
     await tester.pumpAndSettle();
 
     expect(find.text(AppStrings.devMode), findsOneWidget);
