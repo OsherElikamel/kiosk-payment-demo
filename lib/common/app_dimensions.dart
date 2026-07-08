@@ -6,6 +6,8 @@ class AppSpacing {
 
   static const double lg = 24;
 
-  static const EdgeInsets screenHorizontal = EdgeInsets.symmetric(horizontal: lg);
-  static const BoxConstraints boxConstraintsPage = BoxConstraints(maxWidth: 700);
+  static const EdgeInsets screenHorizontal =
+      EdgeInsets.symmetric(horizontal: lg);
+  static const BoxConstraints boxConstraintsPage =
+      BoxConstraints(maxWidth: 700);
 }

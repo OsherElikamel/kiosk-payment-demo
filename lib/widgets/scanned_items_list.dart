@@ -18,7 +18,8 @@ class ScannedItemsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     const itemTotalWidth = AppSpacing.itemsWidth + 32;
-    final itemsPerRow = (screenWidth / itemTotalWidth).floor().clamp(1, scannedItems.length);
+    final itemsPerRow =
+        (screenWidth / itemTotalWidth).floor().clamp(1, scannedItems.length);
     final fitsInOneRow = scannedItems.length <= itemsPerRow;
 
     if (fitsInOneRow) {
@@ -102,8 +103,7 @@ class ScannedItemsList extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             decoration: const BoxDecoration(
               color: AppColors.background,
-              borderRadius:
-                  BorderRadius.vertical(bottom: Radius.circular(20)),
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
             ),
             child: Column(
               children: [

@@ -24,11 +24,12 @@ class PaymentMethod {
     return PaymentMethod(
       id: json['id'] as String? ?? '',
       displayName: json['displayName'] as String? ?? '',
-      processingDelay:
-          Duration(milliseconds: (json['processingDelay'] as num?)?.toInt() ?? 500),
+      processingDelay: Duration(
+          milliseconds: (json['processingDelay'] as num?)?.toInt() ?? 500),
       successMessage: json['successMessage'] as String? ?? '',
       failureMessage: json['failureMessage'] as String? ?? '',
-      successProbability: (json['successProbability'] as num?)?.toDouble() ?? 0.5,
+      successProbability:
+          (json['successProbability'] as num?)?.toDouble() ?? 0.5,
     );
   }
 

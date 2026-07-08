@@ -103,7 +103,8 @@ class StoreConfig {
       storeName: json['storeName'] as String? ?? '',
       currency: json['currency'] as String? ?? '',
       logoPath: json['logoPath'] as String? ?? AppAssets.logoPath,
-      enabledPaymentMethods: List<String>.from(json['enabledPaymentMethods'] ?? []),
+      enabledPaymentMethods:
+          List<String>.from(json['enabledPaymentMethods'] ?? []),
       paymentMethods: (json['paymentMethods'] as List? ?? [])
           .map((pmJson) => PaymentMethod.fromJson(pmJson))
           .toList(),

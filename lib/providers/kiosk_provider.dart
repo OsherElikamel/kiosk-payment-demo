@@ -28,15 +28,12 @@ class KioskProvider extends ChangeNotifier {
   }
 
   List<PaymentMethod> get availableMethods =>
-      _methods.values
-          .where((m) => _enabledIds.contains(m.id))
-          .toList();
+      _methods.values.where((m) => _enabledIds.contains(m.id)).toList();
 
   String formatPrice(double price) =>
       '${storeConfig.currency} ${price.toStringAsFixed(2)}';
 
-  double get total =>
-      scanned.fold(0.0, (s, e) => s + e.price);
+  double get total => scanned.fold(0.0, (s, e) => s + e.price);
 
   Future<void> startScan() async {
     scanning = true;

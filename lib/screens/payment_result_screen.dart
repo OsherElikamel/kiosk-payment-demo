@@ -38,7 +38,9 @@ class PaymentResultScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    success ? AppStrings.paymentSuccessful : AppStrings.paymentFailed,
+                    success
+                        ? AppStrings.paymentSuccessful
+                        : AppStrings.paymentFailed,
                     style: textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
@@ -79,7 +81,8 @@ class PaymentResultScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         p.reset();
-                        Navigator.of(context).popUntil((route) => route.isFirst);
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
                       },
                       child: Text(
                         AppStrings.cancel,

@@ -49,8 +49,10 @@ class PaymentMethodScreen extends StatelessWidget {
                         Consumer<KioskProvider>(
                           builder: (_, p, __) {
                             return Text(
-                              AppStrings.choosePaymentMethod(p.selectedPayment?.displayName),
-                              style: textTheme.headlineLarge?.copyWith(height: 1.2),
+                              AppStrings.choosePaymentMethod(
+                                  p.selectedPayment?.displayName),
+                              style: textTheme.headlineLarge
+                                  ?.copyWith(height: 1.2),
                               textAlign: TextAlign.center,
                             );
                           },
@@ -66,7 +68,9 @@ class PaymentMethodScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
                                     border: Border.all(
-                                      color: selected ? AppColors.textPrimary : AppColors.textLight,
+                                      color: selected
+                                          ? AppColors.textPrimary
+                                          : AppColors.textLight,
                                       width: selected ? 2.5 : 1.2,
                                     ),
                                   ),
@@ -80,7 +84,8 @@ class PaymentMethodScreen extends StatelessWidget {
                                       style: textTheme.titleLarge,
                                     ),
                                     trailing: selected
-                                        ? const Icon(Icons.check_circle, size: 32, color: AppColors.selected)
+                                        ? const Icon(Icons.check_circle,
+                                            size: 32, color: AppColors.selected)
                                         : null,
                                     onTap: () => p.setPaymentMethod(m.id),
                                   ),
@@ -99,14 +104,16 @@ class PaymentMethodScreen extends StatelessWidget {
                                 if (p.selectedPayment == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text(AppStrings.selectPaymentMethodMessage),
+                                      content: Text(AppStrings
+                                          .selectPaymentMethodMessage),
                                       duration: const Duration(seconds: 2),
                                     ),
                                   );
                                 } else {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (_) => const PaymentProcessingScreen(),
+                                      builder: (_) =>
+                                          const PaymentProcessingScreen(),
                                     ),
                                   );
                                 }

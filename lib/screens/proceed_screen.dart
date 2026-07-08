@@ -23,7 +23,8 @@ class ProceedScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.shopping_basket_outlined, size: 80, color: AppColors.textLight),
+                const Icon(Icons.shopping_basket_outlined,
+                    size: 80, color: AppColors.textLight),
                 const SizedBox(height: 24),
                 Text(
                   AppStrings.noItemsFound,

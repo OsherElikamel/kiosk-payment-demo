@@ -46,7 +46,8 @@ class _ScanningScreenState extends State<ScanningScreen> {
     return Consumer<KioskProvider>(
       builder: (context, p, _) {
         if (!p.scanning && p.scanned.isNotEmpty && !_hasNavigated) {
-          WidgetsBinding.instance.addPostFrameCallback((_) => _navigateAfterDelay());
+          WidgetsBinding.instance
+              .addPostFrameCallback((_) => _navigateAfterDelay());
         }
 
         final scanCameBackEmpty = !p.scanning && p.scanned.isEmpty;

@@ -13,7 +13,8 @@ class PaymentProcessingScreen extends StatefulWidget {
   const PaymentProcessingScreen({super.key});
 
   @override
-  State<PaymentProcessingScreen> createState() => _PaymentProcessingScreenState();
+  State<PaymentProcessingScreen> createState() =>
+      _PaymentProcessingScreenState();
 }
 
 class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
@@ -24,7 +25,8 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
   void initState() {
     super.initState();
     final p = context.read<KioskProvider>();
-    _message = AppStrings.processingPaymentTemplate(p.selectedPayment?.displayName);
+    _message =
+        AppStrings.processingPaymentTemplate(p.selectedPayment?.displayName);
     _processPayment();
   }
 
