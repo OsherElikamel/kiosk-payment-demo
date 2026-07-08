@@ -11,8 +11,13 @@ import 'logger.dart';
 class LocalBackend {
   final Random _random = Random();
   Map<String, TagItem>? _tagDatabaseCache;
+  List<String>? _availableFilesCache;
 
-  Future<List<String>> getAvailableInputFilesReliable() async {
+  /// Bundled input files never change at runtime, so the (expensive) probe
+  /// that decodes each workbook runs once and is cached.
+  Future<List<String>> _availableInputFiles() async {
+    if (_availableFilesCache != null) return _availableFilesCache!;
+
     final List<String> existing = [];
 
     for (final path in AppAssets.tagInputFiles) {
@@ -38,6 +43,7 @@ class LocalBackend {
       }
     }
 
+    _availableFilesCache = existing;
     return existing;
   }
 
@@ -96,7 +102,7 @@ class LocalBackend {
   }
 
   Future<List<TagItem>> scanOnce() async {
-    final availableFiles = await getAvailableInputFilesReliable();
+    final availableFiles = await _availableInputFiles();
 
     if (availableFiles.isEmpty) {
       return [];

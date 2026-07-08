@@ -42,8 +42,8 @@ class BigButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.03,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
             vertical: 14,
           ),
         ),
@@ -53,8 +53,8 @@ class BigButton extends StatelessWidget {
             label,
             maxLines: 1,
             overflow: TextOverflow.fade,
-            style: TextStyle(
-              fontSize: screenWidth * 0.045, // adaptive font
+            style: const TextStyle(
+              fontSize: 22,
               fontWeight: FontWeight.w600,
               letterSpacing: 1,
               color: AppColors.background,

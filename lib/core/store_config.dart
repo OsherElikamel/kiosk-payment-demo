@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../common/app_assets.dart';
 import '../common/app_strings.dart';
+import '../services/logger.dart';
 import '../services/payments/payment_method.dart';
 
 class StoreConfig {
@@ -23,10 +24,26 @@ class StoreConfig {
     this.enabledPaymentMethods = const [],
   });
 
+  /// Loads stores from the bundled JSON. A malformed entry is skipped and
+  /// logged rather than discarding the whole file; throws only when no
+  /// valid store remains (main.dart then falls back to the built-in store).
   static Future<List<StoreConfig>> loadStores() async {
     final jsonString = await rootBundle.loadString(AppAssets.storesPath);
     final List<dynamic> jsonList = json.decode(jsonString);
-    return jsonList.map((json) => StoreConfig.fromJson(json)).toList();
+
+    final stores = <StoreConfig>[];
+    for (final entry in jsonList) {
+      try {
+        stores.add(StoreConfig.fromJson(entry as Map<String, dynamic>));
+      } catch (e, stack) {
+        await Logger.e('Skipping malformed store entry: $e', stack);
+      }
+    }
+
+    if (stores.isEmpty) {
+      throw const FormatException('stores.json contains no valid stores');
+    }
+    return stores;
   }
 
   static Future<StoreConfig> load() async {

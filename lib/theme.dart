@@ -3,7 +3,6 @@ import 'common/colors.dart';
 
 ThemeData buildAppTheme() {
   return ThemeData(
-    primarySwatch: AppColors.primarySwatch,
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.background,
     colorScheme: ColorScheme.fromSeed(

@@ -1,4 +1,4 @@
-name: kiosk_scanner_demo
+name: kiosk_payment_demo
 description: "PayTag self-checkout kiosk simulator — Flutter desktop app"
 publish_to: 'none'
 version: 0.1.0
@@ -22,8 +22,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/tag_inputs/
-    - assets/tag_data_local.xlsx
     - assets/images/
     - assets/flags/
-    - assets/

@@ -28,7 +28,6 @@ Built as a technical assignment for PayTag.
 - **Flutter 3.6+** — desktop app (Windows, macOS, Linux)
 - **Provider** — state management
 - **Excel** — RFID tag data simulation (reads `.xlsx` files at runtime)
-- **SharedPreferences** — persistent settings
 - **PathProvider** — log file storage
 
 ## How to Run
@@ -39,10 +38,12 @@ git clone https://github.com/OsherElikamel/kiosk-payment-demo.git
 cd kiosk-payment-demo
 flutter pub get
 
-# Run (pick your platform)
+# Run on Linux (platform runner included in the repo)
 flutter run -d linux
-flutter run -d macos
-flutter run -d windows
+
+# Windows / macOS: generate the platform runner once, then run
+flutter create --platforms=windows,macos .
+flutter run -d windows   # or -d macos
 
 # Run with a specific store
 flutter run -d linux --dart-define=store=STORE_002
@@ -52,9 +53,12 @@ flutter run -d linux --dart-define=store=STORE_002
 
 ```
 Welcome → Scanning → Proceed to Payment → Payment Method → Processing → Result → Demo Ended
-    ↑                                                                                  |
-    └──────────────────────────────── Restart ──────────────────────────────────────────┘
+    ↑                                          ↑                           |          |
+    |                                          └── Failed? Try another ────┘          |
+    └──────────────────────────────── Restart ─────────────────────────────────────────┘
 ```
+
+A failed payment keeps the cart and returns to the payment method screen; cancelling during processing aborts the attempt and logs it as `CANCELLED`.
 
 ## Project Structure
 

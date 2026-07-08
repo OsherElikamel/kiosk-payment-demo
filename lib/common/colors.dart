@@ -16,21 +16,6 @@ class AppColors {
   static final Color iconLight = Colors.grey[600]!;
 
   static const Color success = Color(0xFF4CAF50);
+  static const Color error = Color(0xFFC62828);
   static const Color selected = Color(0xFF1976D2);
-
-  static const MaterialColor primarySwatch = MaterialColor(
-    0xFFE02074,
-    <int, Color>{
-      50: Color(0xFFFFE5EE),
-      100: Color(0xFFFFB8D1),
-      200: Color(0xFFFF8AB4),
-      300: Color(0xFFFF5C97),
-      400: Color(0xFFFF337D),
-      500: Color(0xFFE02074),
-      600: Color(0xFFCC1B68),
-      700: Color(0xFFB81A5C),
-      800: Color(0xFFA41553),
-      900: Color(0xFF8F1147),
-    },
-  );
 }

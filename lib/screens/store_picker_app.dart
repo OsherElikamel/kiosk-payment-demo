@@ -49,7 +49,6 @@ class _StorePickerAppState extends State<StorePickerApp> {
       await Process.run('open', [path]);
     } else if (Platform.isLinux) {
       await Process.run('xdg-open', [path]);
-    } else {
     }
   }
 

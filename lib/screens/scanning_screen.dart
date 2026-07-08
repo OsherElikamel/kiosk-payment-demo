@@ -4,6 +4,7 @@ import '../common/app_dimensions.dart';
 import '../common/app_strings.dart';
 import '../common/colors.dart';
 import '../providers/kiosk_provider.dart';
+import '../widgets/big_button.dart';
 import '../widgets/scanned_items_list.dart';
 import 'proceed_screen.dart';
 
@@ -48,16 +49,34 @@ class _ScanningScreenState extends State<ScanningScreen> {
           WidgetsBinding.instance.addPostFrameCallback((_) => _navigateAfterDelay());
         }
 
+        final scanCameBackEmpty = !p.scanning && p.scanned.isEmpty;
+
         Widget centerContent;
         if (p.scanning) {
           centerContent = const CircularProgressIndicator(
             strokeWidth: 6,
             color: AppColors.textTitle,
           );
-        } else if (p.scanned.isEmpty) {
-          centerContent = Text(
-            AppStrings.noItemsFound,
-            style: textTheme.headlineMedium,
+        } else if (scanCameBackEmpty) {
+          // Dead-end guard: a kiosk has no back button, so an empty scan
+          // must always offer a way out.
+          centerContent = Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.shopping_basket_outlined,
+                  size: 80, color: AppColors.textLight),
+              const SizedBox(height: 24),
+              Text(
+                AppStrings.insertItemsPrompt,
+                style: textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              BigButton(
+                label: AppStrings.restartLabel,
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
           );
         } else {
           centerContent = ScannedItemsList(
@@ -74,7 +93,9 @@ class _ScanningScreenState extends State<ScanningScreen> {
                 Padding(
                   padding: AppSpacing.screenHorizontal,
                   child: Text(
-                    AppStrings.scanningInProcess,
+                    scanCameBackEmpty
+                        ? AppStrings.noItemsFound
+                        : AppStrings.scanningInProcess,
                     style: textTheme.headlineLarge?.copyWith(
                       fontSize: 38,
                       letterSpacing: 0.5,

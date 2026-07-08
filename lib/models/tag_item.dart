@@ -10,13 +10,4 @@ class TagItem {
     required this.price,
     required this.name,
   });
-
-  factory TagItem.fromMap(Map<String, dynamic> m) {
-    return TagItem(
-      tagId: m['tagId'] as String? ?? '',
-      assetPath: m['asset'] as String? ?? '',
-      price: (m['price'] as num?)?.toDouble() ?? 0.0,
-      name: m['name'] as String? ?? '',
-    );
-  }
 }

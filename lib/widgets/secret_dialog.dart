@@ -1,18 +1,19 @@
-// widgets/secret_store_picker_dialog.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // for haptic
+import 'package:flutter/services.dart';
 import '../common/app_strings.dart';
 import '../common/colors.dart';
 import '../core/store_config.dart';
 import '../screens/store_picker_app.dart';
 import 'big_button.dart';
 
+/// Developer-mode dialog, opened by tapping the store logo 7 times
+/// on the welcome screen.
 class SecretStorePickerDialog extends StatelessWidget {
   const SecretStorePickerDialog({super.key});
 
   Future<void> _openStorePicker(BuildContext context) async {
     HapticFeedback.mediumImpact();
-    Navigator.of(context).pop(); // close dialog
+    Navigator.of(context).pop();
 
     final stores = await StoreConfig.loadStores();
     if (!context.mounted) return;
@@ -36,23 +37,12 @@ class SecretStorePickerDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Cool icon with subtle glow effect
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: AppColors.background,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.admin_panel_settings_rounded,
-                size: 80,
-                color: AppColors.textPrimary,
-              ),
+            const Icon(
+              Icons.admin_panel_settings_rounded,
+              size: 80,
+              color: AppColors.textPrimary,
             ),
-
             const SizedBox(height: 48),
-
-            // Title — same as WelcomeScreen & PaymentMethodScreen
             Text(
               AppStrings.devMode,
               style: const TextStyle(
@@ -63,10 +53,7 @@ class SecretStorePickerDialog extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: 20),
-
-            // Subtitle — slightly larger and elegant
             Text(
               AppStrings.selectStoreUnlock,
               style: const TextStyle(
@@ -76,18 +63,12 @@ class SecretStorePickerDialog extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: 60),
-
-            // Your beautiful BigButton — perfectly centered
             BigButton(
               label: AppStrings.selectStore,
               onPressed: () => _openStorePicker(context),
             ),
-
             const SizedBox(height: 24),
-
-            // Subtle cancel button
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(

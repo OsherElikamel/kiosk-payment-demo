@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Logger {
-  static String? _cachedPath;
+  static bool _printedPath = false;
 
   static Future<String> _getLogFilePath() async {
     final dir = await getApplicationSupportDirectory();
@@ -17,8 +17,8 @@ class Logger {
     final fileName = '${date.year}-${_pad(date.month)}-${_pad(date.day)}.log';
     final fullPath = '${logDir.path}/$fileName';
 
-    if (_cachedPath == null) {
-      _cachedPath = fullPath;
+    if (!_printedPath) {
+      _printedPath = true;
       if (kDebugMode) {
         debugPrint('[LOGGER] Logs: $fullPath');
       }
@@ -59,14 +59,20 @@ class Logger {
     required String storeId,
     required String storeName,
     required bool success,
+    bool cancelled = false,
     String? message,
   }) async {
+    final status = cancelled
+        ? 'CANCELLED'
+        : success
+            ? 'SUCCESS'
+            : 'FAILED';
     final entry = _fmt('PAYMENT', '''
 Payment ID: $paymentId
 Store: $storeName ($storeId)
 Method: $methodId
 Amount: $amount $currency
-Status: ${success ? 'SUCCESS' : 'FAILED'}
+Status: $status
 Message: ${message ?? ''}
 ''');
 

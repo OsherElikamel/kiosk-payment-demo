@@ -58,8 +58,8 @@ class AppStrings {
   }
 
   static String processingPaymentTemplate(String? method) {
-    final en = method == null ? 'Processing Payment' : 'You chose $method';
-    final he = method == null ? 'מעבדת תשלום' : 'בחרת $method';
+    final en = method == null ? 'Processing Payment' : 'Paying with $method';
+    final he = method == null ? 'מעבד תשלום' : 'תשלום באמצעות $method';
     return language == AppLanguage.hebrew ? he : en;
   }
 
@@ -77,6 +77,11 @@ class AppStrings {
       language == AppLanguage.hebrew ? 'אנא בחר אמצעי תשלום לפני המשך' : 'Please select a payment method before continuing.';
   static String get noPaymentMethodSelected =>
       language == AppLanguage.hebrew ? 'לא נבחר אמצעי תשלום' : 'No payment method selected';
+  static String get paymentProcessingError =>
+      language == AppLanguage.hebrew ? 'שגיאה בעיבוד התשלום' : 'Payment processing error';
+  static String get tryAnotherMethod =>
+      language == AppLanguage.hebrew ? 'נסה אמצעי תשלום אחר' : 'Try Another Method';
+  static String get totalPaid => language == AppLanguage.hebrew ? 'סה"כ שולם' : 'Total paid';
 
   // Payment methods
   static String get paymentMethodCreditCard => language == AppLanguage.hebrew ? 'כרטיס אשראי' : 'Credit Card';

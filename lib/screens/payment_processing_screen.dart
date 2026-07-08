@@ -18,48 +18,44 @@ class PaymentProcessingScreen extends StatefulWidget {
 
 class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
   String _message = '';
+  bool _processing = true;
 
   @override
   void initState() {
     super.initState();
+    final p = context.read<KioskProvider>();
+    _message = AppStrings.processingPaymentTemplate(p.selectedPayment?.displayName);
     _processPayment();
   }
 
   Future<void> _processPayment() async {
     final p = Provider.of<KioskProvider>(context, listen: false);
-    setState(() {
-      final paymentMethodName = p.selectedPayment?.displayName ?? 'unknown method';
-      _message = AppStrings.processingPaymentTemplate(paymentMethodName);
-    });
 
-    late final PaymentResult result;
+    PaymentResult result;
     try {
       result = await p.processPayment();
-
-      if (!result.success && p.selectedPayment != null) {
-        try {
-          await p.selectedPayment!.cancel(
-            p.storeConfig.storeId,
-            p.storeConfig.storeName,
-            p.storeConfig.currency,
-          );
-        } catch (e, stack) {
-          await Logger.e('Payment cancel failed: $e', stack);
-        }
-      }
     } catch (e, stack) {
       await Logger.e('Payment processing failed: $e', stack);
-      result = const PaymentResult(
-          success: false, message: 'Payment processing error');
+      result = PaymentResult(
+          success: false, message: AppStrings.paymentProcessingError);
     }
 
-    if (!mounted) return;
+    if (!mounted || result.cancelled) return;
+
+    setState(() => _processing = false);
     await Future.delayed(const Duration(seconds: 1));
     if (!mounted) return;
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => PaymentResultScreen(result: result)),
     );
+  }
+
+  void _cancel() {
+    final p = context.read<KioskProvider>();
+    p.requestPaymentCancel();
+    p.reset();
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   @override
@@ -98,17 +94,14 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
                     ],
                   ),
                   const SizedBox(height: 50),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 60),
-                    child: BigButton(
-                      label: AppStrings.cancel,
-                      onPressed: () {
-                        final p = Provider.of<KioskProvider>(context, listen: false);
-                        p.reset();
-                        Navigator.of(context).popUntil((route) => route.isFirst);
-                      },
+                  if (_processing)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 60),
+                      child: BigButton(
+                        label: AppStrings.cancel,
+                        onPressed: _cancel,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),

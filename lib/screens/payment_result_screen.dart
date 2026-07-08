@@ -18,6 +18,7 @@ class PaymentResultScreen extends StatelessWidget {
     final p = Provider.of<KioskProvider>(context, listen: false);
     final success = result.success;
     final textTheme = Theme.of(context).textTheme;
+    final methodName = p.selectedPayment?.displayName;
 
     return Scaffold(
       body: SafeArea(
@@ -33,7 +34,7 @@ class PaymentResultScreen extends StatelessWidget {
                   Icon(
                     success ? Icons.check_circle_outline : Icons.error_outline,
                     size: 80,
-                    color: success ? AppColors.success : AppColors.primaryAccent,
+                    color: success ? AppColors.success : AppColors.error,
                   ),
                   const SizedBox(height: 24),
                   Text(
@@ -42,28 +43,56 @@ class PaymentResultScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
-                  if (!success)
+                  if (success)
+                    Text(
+                      '${AppStrings.totalPaid}: ${p.formatPrice(p.total)}'
+                      '${methodName != null ? ' · $methodName' : ''}',
+                      style: textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
+                    )
+                  else
                     Text(
                       result.message,
                       style: textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                     ),
                   const SizedBox(height: 20),
-                  BigButton(
-                    label: AppStrings.continueLabel,
-                    onPressed: () {
-                      if (success) {
+                  if (success)
+                    BigButton(
+                      label: AppStrings.continueLabel,
+                      onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (_) => const DemoEndedScreen(),
                           ),
                         );
-                      } else {
+                      },
+                    )
+                  else ...[
+                    // Cart is kept — the PaymentMethodScreen is still on the
+                    // stack below, so popping returns to it with items intact.
+                    BigButton(
+                      label: AppStrings.tryAnotherMethod,
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () {
                         p.reset();
                         Navigator.of(context).popUntil((route) => route.isFirst);
-                      }
-                    },
-                  ),
+                      },
+                      child: Text(
+                        AppStrings.cancel,
+                        style: const TextStyle(
+                          color: AppColors.primaryAccent,
+                          fontSize: 19,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.primaryAccent,
+                          decorationThickness: 1,
+                        ),
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 60),
                 ],
               ),

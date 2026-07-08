@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../common/app_strings.dart';
 import '../core/store_config.dart';
 import '../models/tag_item.dart';
 import '../services/local_backend.dart';
@@ -12,6 +13,7 @@ class KioskProvider extends ChangeNotifier {
   List<TagItem> scanned = [];
   PaymentMethod? selectedPayment;
   bool scanning = false;
+  bool _cancelRequested = false;
 
   late final Map<String, PaymentMethod> _methods;
   late final List<String> _enabledIds;
@@ -56,18 +58,33 @@ class KioskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Marks the in-flight payment as cancelled; [processPayment] checks this
+  /// before committing, so a cancelled attempt is logged as CANCELLED
+  /// instead of completing behind the user's back.
+  void requestPaymentCancel() {
+    _cancelRequested = true;
+  }
+
   Future<PaymentResult> processPayment() async {
-    if (selectedPayment == null) {
-      return const PaymentResult(
-          success: false, message: 'No payment method selected');
+    final method = selectedPayment;
+    if (method == null) {
+      return PaymentResult(
+          success: false, message: AppStrings.noPaymentMethodSelected);
     }
 
+    _cancelRequested = false;
     try {
-      return await selectedPayment!.pay(total, storeConfig.currency, storeConfig.storeId, storeConfig.storeName);
+      return await method.pay(
+        total,
+        storeConfig.currency,
+        storeConfig.storeId,
+        storeConfig.storeName,
+        isCancelled: () => _cancelRequested,
+      );
     } catch (e, stack) {
       Logger.e('Payment failed: $e', stack);
-      return const PaymentResult(
-          success: false, message: 'Payment processing error');
+      return PaymentResult(
+          success: false, message: AppStrings.paymentProcessingError);
     }
   }
 
