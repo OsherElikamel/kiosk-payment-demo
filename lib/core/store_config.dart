@@ -46,7 +46,7 @@ class StoreConfig {
   }
 
   /// Built-in fallback used only when stores.json is unreadable. Both
-  /// language variants are literals — resolving AppStrings here would
+  /// language variants are literals: resolving AppStrings here would
   /// freeze whichever language was active at construction time.
   static Future<StoreConfig> load() async {
     await Future.delayed(const Duration(milliseconds: 50));

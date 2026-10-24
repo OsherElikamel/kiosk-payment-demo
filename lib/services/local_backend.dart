@@ -37,7 +37,7 @@ class LocalBackend {
           existing.add(path);
         }
       } on FlutterError catch (_) {
-        // Asset not bundled — skip
+        // Asset not bundled, skip
       } catch (e, stack) {
         await Logger.e('Failed to parse tag input $path: $e', stack);
       }

@@ -1,5 +1,5 @@
 name: kiosk_payment_demo
-description: "PayTag self-checkout kiosk simulator — Flutter desktop app"
+description: "PayTag self-checkout kiosk simulator, a Flutter desktop app"
 publish_to: 'none'
 version: 0.1.0
 

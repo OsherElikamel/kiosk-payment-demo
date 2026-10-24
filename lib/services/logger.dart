@@ -36,7 +36,7 @@ class Logger {
 
   static String _pad(int n) => n.toString().padLeft(2, '0');
 
-  /// Logging must never take down the flow it observes — a failed write
+  /// Logging must never take down the flow it observes. A failed write
   /// (missing platform channel, full disk, permissions) is reported in
   /// debug and otherwise swallowed.
   static Future<void> _writeToFile(String text) async {

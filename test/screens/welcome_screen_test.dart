@@ -36,7 +36,7 @@ void main() {
     await tester.pumpWidget(buildApp());
 
     // The logo image never decodes inside a widget test, so its hit box
-    // can be zero-sized depending on the Flutter build — invoke the tap
+    // can be zero-sized depending on the Flutter build, so invoke the tap
     // handler directly; the counter logic is what's under test.
     final detector =
         tester.widget<GestureDetector>(find.byKey(const Key('storeLogo')));

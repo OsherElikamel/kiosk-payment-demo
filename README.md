@@ -1,4 +1,4 @@
-# PayTag Kiosk — Self-Checkout Simulator
+# PayTag Kiosk: Self-Checkout Simulator
 
 A desktop self-checkout kiosk simulator built with Flutter. Simulates the full retail flow: RFID tag scanning, item display, payment method selection, and payment processing with configurable success/failure outcomes. Supports multiple stores, a fully bilingual UI (English/Hebrew with RTL layout, toggle on the welcome screen), an idle timeout that returns abandoned sessions to the welcome screen, and detailed payment logging.
 
@@ -25,10 +25,10 @@ Built as a technical assignment for PayTag.
 
 ## Tech Stack
 
-- **Flutter 3.6+** — desktop app (Windows, macOS, Linux)
-- **Provider** — state management
-- **Excel** — RFID tag data simulation (reads `.xlsx` files at runtime)
-- **PathProvider** — log file storage
+- **Flutter 3.6+:** desktop app (Windows, macOS, Linux)
+- **Provider:** state management
+- **Excel:** RFID tag data simulation (reads `.xlsx` files at runtime)
+- **PathProvider:** log file storage
 
 ## How to Run
 
@@ -106,7 +106,7 @@ assets/
 
 ## Multi-Store Support
 
-Stores are defined in `assets/stores.json`. Each store has its own currency, logo, and set of payment methods with configurable success probability, processing delay, and bilingual display names/outcome messages (`displayNameHe`, `successMessageHe`, `failureMessageHe` — English is the fallback).
+Stores are defined in `assets/stores.json`. Each store has its own currency, logo, and set of payment methods with configurable success probability, processing delay, and bilingual display names/outcome messages (`displayNameHe`, `successMessageHe`, `failureMessageHe`, with English as the fallback).
 
 Select a store at launch via `--dart-define=store=STORE_002` or through the secret developer mode.
 

@@ -71,7 +71,7 @@ class PaymentResultScreen extends StatelessWidget {
                       },
                     )
                   else ...[
-                    // Cart is kept — the PaymentMethodScreen is still on the
+                    // Cart is kept: the PaymentMethodScreen is still on the
                     // stack below, so popping returns to it with items intact.
                     BigButton(
                       label: AppStrings.tryAnotherMethod,
